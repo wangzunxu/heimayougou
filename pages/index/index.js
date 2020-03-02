@@ -4,7 +4,8 @@ data: {
   // 轮播图数据
   banners:[],
   menus:[],
-  floors:[]
+  floors:[],
+  isShow:false
 },
 onLoad() {
   // 请求轮播图接口
@@ -42,5 +43,26 @@ request({
     floors:message
   })
 })
-}
-})
+},
+// 返回顶部
+  handleToTop() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration:300
+    })
+  },
+  // 监听页面滚动事件
+  onPageScroll(e) {
+    const {scrollTop} = e;
+    let isSh = this.data.isShow
+    if(scrollTop > 100) {
+      isSh = true
+      }else {
+        isSh = false
+      }
+      this.setData({
+        isShow : isSh
+      })
+    }
+  }
+)

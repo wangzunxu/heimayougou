@@ -51,4 +51,10 @@
   </view>
 </view>
 </view>
+<!-- bindtap微信小程序的点击事件 -->
+<!-- 返回顶部 -->
+  <view class="toTop" bindtap="handleToTop" wx:if="{{isShow}}">
+    <view class="arrow"></view>
+    顶部
+  </view>
 </view>
