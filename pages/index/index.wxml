@@ -1,4 +1,24 @@
 <!--index.wxml-->
 <view class="container">
- 首页
+
+ <!-- 头部搜索栏 -->
+ <navigator>
+<view class="search">
+ <view class="search-input">
+ <icon type="search" size="20" />搜索 
+ </view>
+</view>
+ </navigator>
+ <swiper indicator-dots
+  autoplay 
+  circular
+  indicator-color="rgba(255,255,255,.3)"
+  indicator-active-color="rgba(255,255,255,1)">
+ <!-- block没有语义，不会在dom结构中生成，一般用于for循环 -->
+    <block wx:for="{{banners}}" wx:key="index">
+ <swiper-item>
+ <image src="{{item.image_src}}" mode="aspectFill" style="width:750rpx;heigth:340rpx;"></image>
+ </swiper-item>
+     </block>
+ </swiper>
 </view>
