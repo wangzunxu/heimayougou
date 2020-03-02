@@ -21,4 +21,34 @@
  </swiper-item>
      </block>
  </swiper>
+
+ <!-- 中间导航栏 -->
+<view class="menus">
+<block wx:for="{{menus}}" wx:key="index">
+<!-- 跳转到tabBar页面需要设置 open-type="switchTab" -->
+<navigator url="{{item.url}}" open-type="{{item.open_type}}">
+<image src="{{item.image_src}}" mode="aspectFill">
+</image>
+</navigator>
+</block>
+</view>
+
+<!-- 楼层布局 -->
+<view class="floor" wx:for="{{floors}}" wx:key="index">
+<!-- 楼层头部 -->
+<image src="{{item.floor_title.image_src}}" class="floor-title"></image>
+
+<!-- 楼层内容 -->
+<view class="floor-content">
+  <view class="floor-content-left">
+    <image src="{{item.product_list[0].image_src}}"></image>
+  </view>
+  <view class="floor-content-right">
+  <block wx:for="{{item.product_list}}" wx:key="index" wx:if="{{index>0}}">
+  <image src="{{item.image_src}}" mode="aspectFill"></image>
+
+  </block>
+  </view>
+</view>
+</view>
 </view>
