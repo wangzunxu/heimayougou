@@ -15,10 +15,26 @@
   text-align: center;
   padding: 20rpx 0;
   border-bottom: solid 1px #ddd;
+  position: relative;
 }
 .right {
 
 }
 .right image {
   
+}
+.active {
+  color: red;
+  background: #fff;
+}
+.active::before {
+  display: block;
+  content: "";
+  width: 3px;
+  height: 16px;
+  background: red;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-8px);
 }

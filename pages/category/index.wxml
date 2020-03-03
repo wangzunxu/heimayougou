@@ -5,7 +5,7 @@
 <view class="menus">
   <view class="left">
     <block wx:for="{{100}}" wx:key="index">
-      <view class="item">
+      <view class="item {{current==index?'active':''}}" bindtap="handleClick" data-index="{{index}}">
         热门推荐
       </view>
     </block>
