@@ -4,27 +4,30 @@
 <!-- 商品导航 -->
 <view class="menus">
   <view class="left">
-    <block wx:for="{{100}}" wx:key="index">
+    <block wx:for="{{menuList}}" wx:key="index">
       <view class="item {{current==index?'active':''}}" bindtap="handleClick" data-index="{{index}}">
-        热门推荐
+        {{item.cat_name}}
       </view>
     </block>
   </view>
 
-  <view class="left">
-    <view class="category-list">
-      <view class="category-title">
-        电视
-      </view>
+  <view class="right">
+    <!-- 子分类 -->
+    <block wx:for="{{menuList[current].children}}" wx:key="index">
+      <view class="category-list">
+        <view class="category-title">
+          /<text> {{item.cat_name}} </text>/
+        </view>
 
-      <view class="product-list">
-        <block wx:for="{{50}}" wx:key="index">
-          <navigator url="">
-            <image src="https://img12.360buyimg.com/n7/jfs/t1/52522/40/876/83266/5ce8bdf7E93ac5152/43469101aa217330.jpg"></image>
-            <view>海尔电视</view>
-          </navigator>
-        </block>
+        <view class="product-list">
+          <block wx:for="{{item.children}}" wx:key="index" wx:for-item="subItem" wx:key-index="subIndex">
+            <navigator url="">
+              <image mode="aspectFill" src="{{subItem.cat_icon}}"></image>
+              <view> {{subItem.cat_name}} </view>
+            </navigator>
+          </block>
+        </view>
       </view>
-    </view>
+    </block>
   </view>
 </view>
