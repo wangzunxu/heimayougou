@@ -4,8 +4,9 @@
 <!-- 商品导航 -->
 <view class="menus">
   <view class="left">
-    <block wx:for="{{['大家电','热门推荐','海外购','苏宁房产']}}" wx:key="index">
-      <view class="item">{{item}}
+    <block wx:for="{{100}}" wx:key="index">
+      <view class="item">
+        热门推荐
       </view>
     </block>
   </view>
@@ -17,10 +18,10 @@
       </view>
 
       <view class="product-list">
-        <block wx:for="{{['大家电','热门推荐','海外购','苏宁房产']}}" wx:key="index">
+        <block wx:for="{{50}}" wx:key="index">
           <navigator url="">
-          <image src="https://img12.360buyimg.com/n7/jfs/t1/52522/40/876/83266/5ce8bdf7E93ac5152/43469101aa217330.jpg"></image>
-          <view>海尔电视</view>
+            <image src="https://img12.360buyimg.com/n7/jfs/t1/52522/40/876/83266/5ce8bdf7E93ac5152/43469101aa217330.jpg"></image>
+            <view>海尔电视</view>
           </navigator>
         </block>
       </view>
