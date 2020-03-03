@@ -1,14 +1,8 @@
 <!--index.wxml-->
 <view class="container">
-
+<search/>
  <!-- 头部搜索栏 -->
- <navigator>
-<view class="search">
- <view class="search-input">
- <icon type="search" size="20" />搜索 
- </view>
-</view>
- </navigator>
+
  <swiper indicator-dots
   autoplay 
   circular
