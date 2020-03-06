@@ -7,7 +7,8 @@ Page({
   data: {
     keyword: '',
     list: [],
-    hasMore: true
+    hasMore: true,
+    loading:true
   },
 
   /**
@@ -25,6 +26,10 @@ Page({
   },
   // 封装请求数据的方法
   getGoods() {
+    // 如果没有更多就不用再请求了
+    if(this.data.hasMore==false){
+      return;
+    }
     setTimeout(v => {
       // 请求商品列表
       request({
@@ -40,15 +45,23 @@ Page({
           message
         } = res.data;
         //修改goods_price的精确位数
-        message.goods.map(v => {
+        const list = message.goods.map(v => {
           v.goods_price = Number(v.goods_price).toFixed(2);
           return v;
         })
         this.setData({
-          list: [...this.data.list,...message.goods]
+          list: [...this.data.list, ...list],
+          // 上一次请求的页面加载完毕时关闭加载状态
+          loading:false
         })
+        // 判断是否是最后一页
+        if (this.data.list.length >= message.total) {
+          this.setData({
+            hasMore:false
+          })
+        }
       })
-    }, 1000)
+    }, 2000)
   },
 
   /**
@@ -90,10 +103,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    this.setData({
-      pagenum:this.data.pagenum+1
-    })
-    this.getGoods();
+    if(this.data.loading==false) {
+      this.setData({
+        // 每次请求之前初始化loading
+        loading:true,
+        pagenum: this.data.pagenum + 1
+      })
+      this.getGoods();
+    }
   },
 
   /**
