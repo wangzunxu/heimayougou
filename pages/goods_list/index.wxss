@@ -53,3 +53,9 @@ display: -webkit-box;
 .goods-item .content text {
   font-size: 12px;
 }
+.load-more {
+  padding: 20rpx;
+  font-size: 13px;
+  color: #999;
+  text-align: center;
+}
