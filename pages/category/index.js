@@ -17,7 +17,7 @@ Page({
     request({
       url:"/categories"
     }).then(res=>{
-      console.log(res)
+      // console.log(res)
       this.setData({
         menuList:res.data.message
       })
