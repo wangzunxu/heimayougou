@@ -1,20 +1,42 @@
+import request from "../../utils/request.js";
 // pages/goods_list/index.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    keyword:''
+    keyword:'',
+    list:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
+   * options是url 的参数对象，只有onLoad才可以拿到
    */
   onLoad: function (options) {
     const {keyword} = options;
     this.setData({
       keyword
+    })
+    // 请求商品列表
+    request({
+      url:"/goods/search",
+      data:{
+        query:this.data.keyword,
+        pagenum: 1,
+        pagesize: 10
+      }
+      
+    }).then(res=>{
+      const {message} = res.data;
+      //修改goods_price的精确位数
+      message.goods.map(v=>{
+        v.goods_price = Number(v.goods_price).toFixed(2);
+        return v;
+      })
+      this.setData({
+        list:message.goods
+      }) 
     })
   },
 
