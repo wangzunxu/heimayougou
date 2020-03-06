@@ -1,9 +1,10 @@
 <view class="container">
- <navigator>
-<view class="search">
- <view class="search-input">
- <icon type="search" size="20" />搜索 
- </view>
-</view>
- </navigator>
+  <navigator>
+    <view class="search background">
+      <view class="search-input {{align}}">
+        <icon type="search" size="20" />
+        {{keyword}}
+      </view>
+    </view>
+  </navigator>
 </view>

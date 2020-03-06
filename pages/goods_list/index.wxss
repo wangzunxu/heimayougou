@@ -59,3 +59,9 @@ display: -webkit-box;
   color: #999;
   text-align: center;
 }
+.color {
+  background: rgb(239,239,239)!important;
+}
+.input-left {
+  justify-content: flex-start!important;
+}

@@ -1,12 +1,14 @@
 <view class="container">
   <!-- 顶部搜索栏 -->
-  <navigator>
+  <!-- <search keyword="{{keyword}}" background="color" align="input-left"/> -->
+  <search keyword="{{keyword}}" background="color" align="left"/>
+  <!-- <navigator>
     <view class="search">
       <view class="search-input">
         <icon type="search" size="20" />{{keyword}}
       </view>
     </view>
-  </navigator>
+  </navigator> -->
 
   <!-- tab栏头部 -->
   <view class="tab">
