@@ -79,3 +79,13 @@
 .iconpaixu:before {
   content: "\e624";
 }
+.iconshoucang:before {
+  content: "\e62d";
+}
+.icongouwuche:before {
+  content: "\e62e";
+}
+
+.iconkefu:before {
+  content: "\e64e";
+}

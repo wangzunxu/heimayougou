@@ -15,7 +15,7 @@ Page({
     history:[]
   },
   handleInput(e) {
-    console.log(e)
+    // console.log(e)
     const {value} = e.detail;
     this.setData({
       inputValue:value
