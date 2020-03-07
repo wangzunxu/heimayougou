@@ -9,7 +9,7 @@
       <view class="cancel-button" wx:if="{{isShow}}" bindtap="handleClick">取消</view>
 
       <!-- 搜索建议列表 -->
-      <view class="recommend" wx:if="{{recommend.length}}">
+      <view class="recommend" wx:if="{{isShow}}">
         <navigator url="" wx:for="{{recommend}}" wx:key="index">
           {{item.goods_name}}
         </navigator>

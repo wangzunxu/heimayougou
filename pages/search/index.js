@@ -7,7 +7,10 @@ Page({
    */
   data: {
     isShow:'',
-    recommend:[]
+    recommend:[],
+    loading:false,
+    // 上次输入的值
+    lastValue:''
   },
   handleInput(e) {
     console.log(e)
@@ -18,17 +21,36 @@ Page({
     // 如果value有值则发起请求
     if(!value) return;
     // 请求搜索建议
-    request({
-      url:"/goods/qsearch",
-      data:{
-        query:value
-      }
-    }).then(res=>{
-      const {message} =res.data;
+    this.getRecommend();
+   
+  },
+  //请求搜索建议
+  getRecommend() {
+    // 必须保证发请求之前没有别的请求（loading为false），发请求的时候将状态改为true，请求成功以后状态改为flase，
+    // 并设置在有请求发出的时候，不允许再发出请求
+    if(this.data.loading==false) {
       this.setData({
-        recommend:message
+        loading:true,
+        // 记录当前输入框的值
+        lastValue:this.data.isShow
       })
+    request({
+      url: "/goods/qsearch",
+      data: {
+        query: this.data.isShow
+      }
+    }).then(res => {
+      const { message } = res.data;
+      this.setData({
+        recommend: message,
+        loading:false
+      })
+      // 判断最新值和当前值是否相等
+      if(this.data.isShow !== this.data.lastValue) {
+        this.getRecommend();
+      }
     })
+    }
   },
   handleClick() {
     this.setData({
