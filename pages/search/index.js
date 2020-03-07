@@ -6,17 +6,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isShow:'',
+    inputValue:'',
     recommend:[],
     loading:false,
     // 上次输入的值
-    lastValue:''
+    lastValue:'',
+    // 历史记录
+    history:[]
   },
   handleInput(e) {
     console.log(e)
     const {value} = e.detail;
     this.setData({
-      isShow:value
+      inputValue:value
     })
     // 如果value有值则发起请求
     if(!value) return;
@@ -32,12 +34,12 @@ Page({
       this.setData({
         loading:true,
         // 记录当前输入框的值
-        lastValue:this.data.isShow
+        lastValue:this.data.inputValue
       })
     request({
       url: "/goods/qsearch",
       data: {
-        query: this.data.isShow
+        query: this.data.inputValue
       }
     }).then(res => {
       const { message } = res.data;
@@ -46,7 +48,7 @@ Page({
         loading:false
       })
       // 判断最新值和当前值是否相等
-      if(this.data.isShow !== this.data.lastValue) {
+      if(this.data.inputValue !== this.data.lastValue) {
         this.getRecommend();
       }
     })
@@ -54,16 +56,52 @@ Page({
   },
   handleClick() {
     this.setData({
-      isShow:''
+      inputValue:''
+    })
+  },
+  handleEnter() {
+    // 每次搜索前，先把本地数据拿出来
+    let arr = wx.getStorageSync("history");
+    // 如果本地没有这和个数组或arr不是个数组，让arr等于[]
+    if(!Array.isArray(arr)) {
+      arr=[]
+    }
+    arr.unshift(this.data.inputValue);
+    // 数组去重 删除除第一个值以外的重复值
+    arr = [...new Set(arr)]
+    wx.setStorageSync('history', arr);
+    // wx.naigatorTo保留当前页面并跳转到下一个页面
+    // wx.redirectTo关闭当前页面并跳转到下一个页面 反回的时候不经过搜索页
+    // wx.relaunchTo关闭所有页面并跳转到下一个页面
+    wx.redirectTo({
+      url: '/pages/goods_list/index?keyword='+this.data.inputValue
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let arr = wx.getStorageSync("history");
+    if(!Array.isArray(arr)) {
+      arr = []
+    }
+    this.setData({
+      history:arr
+    })
   },
-
+  handleBlur() {
+    this.setData({
+      inputValue:''
+    })
+  },
+  handleClear() {
+    // 清空data
+    this.setData({
+      history:[]
+    })
+    // 清空本地数据
+    wx.setStorageSync("history", [])
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
