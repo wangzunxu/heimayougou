@@ -3,13 +3,14 @@
 
 <!-- 商品导航 -->
 <view class="menus">
-  <view class="left">
+<!-- scroll-view允许内容在标签内滚动，在苹果手机里没有回弹效果 样式overflow:auto 在苹果手机中有回弹效果-->
+  <scroll-view scroll-y class="left">
     <block wx:for="{{menuList}}" wx:key="index">
       <view class="item {{current==index?'active':''}}" bindtap="handleClick" data-index="{{index}}">
         {{item.cat_name}}
       </view>
     </block>
-  </view>
+  </scroll-view>
 
   <view class="right">
     <!-- 子分类 -->

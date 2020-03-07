@@ -1,14 +1,17 @@
 .menus {
   display: flex;
-  position: fixed;
+  /* 这里使用绝对定位，在苹果手机下头部搜索就不可以拖动了 */
+  position: absolute;
+  /* 在定位中使用top和bottom等于设置高度 */
   top: 100rpx;
-  bottom: 0;
+  bottom: 0; 
+  /* height: calc(100vh-100rpx); */
   width: 750rpx;
 }
 .left {
   width: 200rpx;
   background: #eee;
-  overflow: auto;
+  /* overflow: auto; */
   height: 100%;
   /* 控制缩放 flex布局中如果右侧宽度过大，会导致左侧内容被挤压*/
   flex-shrink: 0;
