@@ -1,3 +1,4 @@
+import request from "../../utils/request.js";
 // pages/search/index.js
 Page({
 
@@ -5,9 +6,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isShow:'',
+    recommend:[]
   },
-
+  handleInput(e) {
+    console.log(e)
+    const {value} = e.detail;
+    this.setData({
+      isShow:value
+    })
+    // 如果value有值则发起请求
+    if(!value) return;
+    // 请求搜索建议
+    request({
+      url:"/goods/qsearch",
+      data:{
+        query:value
+      }
+    }).then(res=>{
+      const {message} =res.data;
+      this.setData({
+        recommend:message
+      })
+    })
+  },
+  handleClick() {
+    this.setData({
+      isShow:''
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
