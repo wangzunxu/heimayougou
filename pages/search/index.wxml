@@ -1,17 +1,17 @@
-<view class="container">
+<view class="container" bindtap="handleShowList">
   <!-- 搜索栏 -->
   <view class="search-wrapper">
     <view class="search">
       <view class="search-input">
         <icon type="search" size="20"></icon>
         <!-- bindinput监听输入框事件，bindconfirm进入触发事件 -->
-        <input placeholder="请输入您想要的商品" bindinput="handleInput" value="{{inputValue}}" bindconfirm="handleEnter" bindblur="handleBlur"></input>
+        <input placeholder="请输入您想要的商品" bindinput="handleInput" value="{{inputValue}}" bindconfirm="handleEnter"></input>
       </view>
       <view class="cancel-button" wx:if="{{inputValue}}" bindtap="handleClick">取消</view>
 
       <!-- 搜索建议列表 -->
-      <view class="recommend" wx:if="{{inputValue}}">
-        <navigator url="" wx:for="{{recommend}}" wx:key="index">
+      <view id="recommend" class="recommend" wx:if="{{inputValue}}">
+        <navigator url="" wx:for="{{recommend}}" wx:key="index" data-id="{{item.goods_id}}">
           {{item.goods_name}}
         </navigator>
       </view>

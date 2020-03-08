@@ -45,14 +45,16 @@
 <!-- 联系客服的对话框按钮需要用到button的open-type="contact"，但是button有一些默认样式，
 所以将button按钮透明覆盖在普通按钮上 -->
 <view class="contact">
-<button open-type="contact"></button>
+<button open-type="contact">打开客服</button>
 </view>
 
   <view class="btn-white">
     <view class="iconfont icon-kefu"></view>
     <text>联系客服</text>
   </view>
-  <view class="btn-white">
+
+  <!-- 跳转到购物车页 -->
+  <view class="btn-white" bindtap="handleToCart">
   <view class="iconfont icon-gouwuche"></view>
     <text>购物车</text>
   </view>

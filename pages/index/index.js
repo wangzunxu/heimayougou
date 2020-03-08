@@ -60,6 +60,8 @@ request({
       }else {
         isSh = false
       }
+      // 避免频繁操作setdata，如果两个值相等则不再赋值；
+      if(isSh == this.data.isShow) return;
       this.setData({
         isShow : isSh
       })

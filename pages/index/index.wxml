@@ -1,52 +1,48 @@
 <!--index.wxml-->
-<view class="container">
-<search/>
- <!-- 头部搜索栏 -->
+<view class="container" bindtap="handleShowList">
+  <search/>
+  <!-- 头部搜索栏 -->
 
- <swiper indicator-dots
-  autoplay 
-  circular
-  indicator-color="rgba(255,255,255,.3)"
-  indicator-active-color="rgba(255,255,255,1)">
- <!-- block没有语义，不会在dom结构中生成，一般用于for循环 -->
+  <swiper indicator-dots autoplay circular indicator-color="rgba(255,255,255,.3)" indicator-active-color="rgba(255,255,255,1)">
+    <!-- block没有语义，不会在dom结构中生成，一般用于for循环 -->
     <block wx:for="{{banners}}" wx:key="index">
- <swiper-item>
- <image src="{{item.image_src}}" mode="aspectFill" style="width:750rpx;heigth:340rpx;"></image>
- </swiper-item>
-     </block>
- </swiper>
+      <swiper-item>
+        <image src="{{item.image_src}}" mode="aspectFill" style="width:750rpx;heigth:340rpx;"></image>
+      </swiper-item>
+    </block>
+  </swiper>
 
- <!-- 中间导航栏 -->
-<view class="menus">
-<block wx:for="{{menus}}" wx:key="index">
-<!-- 跳转到tabBar页面需要设置 open-type="switchTab" -->
-<navigator url="{{item.url}}" open-type="{{item.open_type}}">
-<image src="{{item.image_src}}" mode="aspectFill">
-</image>
-</navigator>
-</block>
-</view>
-
-<!-- 楼层布局 -->
-<view class="floor" wx:for="{{floors}}" wx:key="index">
-<!-- 楼层头部 -->
-<image src="{{item.floor_title.image_src}}" class="floor-title"></image>
-
-<!-- 楼层内容 -->
-<view class="floor-content">
-  <view class="floor-content-left">
-    <image src="{{item.product_list[0].image_src}}"></image>
+  <!-- 中间导航栏 -->
+  <view class="menus">
+    <block wx:for="{{menus}}" wx:key="index">
+      <!-- 跳转到tabBar页面需要设置 open-type="switchTab" -->
+      <navigator url="{{item.url}}" open-type="{{item.open_type}}">
+        <image src="{{item.image_src}}" mode="aspectFill">
+        </image>
+      </navigator>
+    </block>
   </view>
-  <view class="floor-content-right">
-  <block wx:for="{{item.product_list}}" wx:key="index" wx:if="{{index>0}}">
-  <image src="{{item.image_src}}" mode="aspectFill"></image>
 
-  </block>
+  <!-- 楼层布局 -->
+  <view class="floor" wx:for="{{floors}}" wx:key="index">
+    <!-- 楼层头部 -->
+    <image src="{{item.floor_title.image_src}}" class="floor-title"></image>
+
+    <!-- 楼层内容 -->
+    <view class="floor-content">
+      <view class="floor-content-left">
+        <image src="{{item.product_list[0].image_src}}"></image>
+      </view>
+      <view class="floor-content-right">
+        <block wx:for="{{item.product_list}}" wx:key="index" wx:if="{{index>0}}">
+          <image src="{{item.image_src}}" mode="aspectFill"></image>
+
+        </block>
+      </view>
+    </view>
   </view>
-</view>
-</view>
-<!-- bindtap微信小程序的点击事件 -->
-<!-- 返回顶部 -->
+  <!-- bindtap微信小程序的点击事件 -->
+  <!-- 返回顶部 -->
   <view class="toTop" bindtap="handleToTop" wx:if="{{isShow}}">
     <view class="arrow"></view>
     顶部

@@ -50,5 +50,11 @@ Page({
       current: currenturl, // 当前显示图片的http链接
       urls: this.data.picUrls // 需要预览的图片http链接列表
     })
+  },
+  //购物车页面是tabBar页面
+  handleToCart() {
+    wx.switchTab({
+      url: '/pages/cart/index',
+    })
   }
 })
