@@ -11,7 +11,7 @@
 
       <!-- 搜索建议列表 -->
       <view id="recommend" class="recommend" wx:if="{{inputValue}}">
-        <navigator url="" wx:for="{{recommend}}" wx:key="index" data-id="{{item.goods_id}}">
+        <navigator url="/pages/goods_detail/index?id={{item.goods_id}}" wx:for="{{recommend}}" wx:key="index" data-id="{{item.goods_id}}">
           {{item.goods_name}}
         </navigator>
       </view>
