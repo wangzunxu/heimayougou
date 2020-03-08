@@ -79,6 +79,9 @@ display: -webkit-box;
 .btn-color:last-child{
   background: red;
 }
+.contact {
+  position: 
+}
 .tab {
   display: flex;
   border-top: 10px solid #eee;
@@ -102,4 +105,16 @@ display: -webkit-box;
 }
 .attr-item text {
   margin-right: 20rpx;
+}
+.contact {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  opacity: 0;
+}
+.contact button {
+  height: 100rpx;
 }

@@ -42,6 +42,12 @@
 
 <!-- 页脚的按钮，固定底部 -->
 <view class="btns">
+<!-- 联系客服的对话框按钮需要用到button的open-type="contact"，但是button有一些默认样式，
+所以将button按钮透明覆盖在普通按钮上 -->
+<view class="contact">
+<button open-type="contact"></button>
+</view>
+
   <view class="btn-white">
     <view class="iconfont icon-kefu"></view>
     <text>联系客服</text>

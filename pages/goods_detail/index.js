@@ -37,7 +37,7 @@ Page({
       })
     })
   },
-  handleTab() {
+  handleTab(e) {
     const {index} =e.currentTarget.dataset;
     this.setData({
       current:index
