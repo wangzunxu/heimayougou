@@ -24,6 +24,7 @@
 .address image {
   width: 750rpx;
   height: 15rpx;
+  display: block;
 }
 .goods-list {
   padding-bottom: 120rpx;
@@ -106,6 +107,7 @@ display: -webkit-box;
   justify-content: center;
   align-items: center;
   background: #fff;
+  /* 小程序中input层级高于其他标签 z-index兼容性有问题 cover-view组件可以使用，较麻烦 */
   z-index: 999;
 }
 .allselect icon {
