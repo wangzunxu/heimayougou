@@ -25,6 +25,9 @@
   width: 750rpx;
   height: 15rpx;
 }
+.goods-list {
+  padding-bottom: 120rpx;
+}
 .goods-list-title {
   border-top: 20rpx #eee solid;
   padding: 20rpx;
@@ -92,4 +95,42 @@ display: -webkit-box;
 .goods-number input {
   width: 36px;
   text-align: center;
+}
+.checkout {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 750rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  z-index: 999;
+}
+.allselect icon {
+  margin-right: 20rpx;
+}
+.allprice {
+  flex: 1;
+  padding: 20rpx;
+}
+.allprice-top text {
+  color: red;
+}
+.allprice-top text text {
+  font-size: 12px;
+}
+.allprice-bottom {
+  color: #999;
+  font-size: 12px;
+}
+.checkout-btn {
+  width: 30%;
+  height: 100%;
+  background: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

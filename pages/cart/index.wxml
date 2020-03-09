@@ -20,7 +20,7 @@
   </view>
 
   <!-- 商品列表 -->
-  <view class="goods-list">
+  <view class="goods-list" wx:for="{{5}}">
     商品中间项
     <view class="goods-item">
       <icon type="success" color="red"></icon>
@@ -29,21 +29,39 @@
       <!-- 商品右侧信息 -->
       <view class="goods-item-right">
         <view class="goods-title">
-        信息商品信息商品
-      </view>
-      <view class="goods-info">
-        <view class="goods-price">
-          <text>￥</text>25210
+          信息商品信息商品
         </view>
-        <view class="goods-number">
-          <view class="calc-button">-</view>
-          <input value="1"></input>
-          <view class="calc-button">+</view>
+        <view class="goods-info">
+          <view class="goods-price">
+            <text>￥</text>25210
+          </view>
+          <view class="goods-number">
+            <view class="calc-button">-</view>
+            <input value="1"></input>
+            <view class="calc-button">+</view>
+          </view>
         </view>
       </view>
+    </view>
 
+  <!-- 结算 -->
+    <view class="checkout">
+      <view class="allselect">
+        <icon type="success" color="red"></icon>
+        全选
       </view>
-
+      <view class="allprice">
+        <view class="allprice-top">
+          合计：
+          <text><!-- text中只能嵌套text -->
+          <text>￥</text>151221          
+          </text>
+        </view>
+        <view class="allprice-bottom">
+          包含运费
+        </view>
+      </view>
+        <view class="checkout-btn">结算</view>
     </view>
   </view>
 </view>
