@@ -5,84 +5,103 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address:{},
+    address: {},
     goods: [],
-    allPrice:0
+    allPrice: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 获取本地地址
-    let address =  wx.getStorageSync("address")
+    let address = wx.getStorageSync("address")
     this.setData({
-      address: address || {} 
+      address: address || {}
     })
   },
-  onShow(){
+  onShow() {
     //onLoad和data只会执行一次
     this.setData({
-      goods:wx.getStorageSync("goods") || []
+      goods: wx.getStorageSync("goods") || []
     })
     this.handleAllPrice();
   },
   handleCalc(e) {
-    const {index,number} = e.currentTarget.dataset;
+    const {
+      index,
+      number
+    } = e.currentTarget.dataset;
     console.log(number)
-    this.data.goods[index].number+=number;
+    this.data.goods[index].number += number;
+    // if (this.data.goods[index].number <= 0) {
+    //   this.data.goods[index].number = 0
+    // }
 
     // 如果数量为零，则删除该商品
-    if(this.data.goods[index].number===0) {
+    if (this.data.goods[index].number === 0) {
       //弹出
       wx.showModal({
         title: '提示',
         content: '是否删除该商品',
-        success:(res)=> {
+        success: (res) => {
           if (res.confirm) {
             // console.log(this.data.goods)
-            this.data.goods.splice(index,1)
+            this.data.goods.splice(index, 1)
             // 删除就刷新
+            this.setData({
+              goods: this.data.goods
+            })
+          }else {
+            //如果点击取消则数量+1
+            this.data.goods[index].number+=1;
             this.setData({
               goods: this.data.goods
             })
           }
         }
       })
+    } else {
+      // 调用setData刷新页面
+      // 用户点击 + 或者 - 号就按顺序执行了，而wx:showModal中的success
+      // 是在点击确认后才执行的，所以先执行的下面后执行上面的success
+      this.setData({
+        goods: this.data.goods
+      })
     }
-    // 调用setData刷新页面
-    // 用户点击 + 或者 - 号就按顺序执行了，而wx:showModal中的success
-    // 是在点击确认后才执行的，所以先执行的下面后执行上面的success
-    this.setData({
-      goods:this.data.goods
-    })
+    this.handleAllPrice()
+
   },
+  // 计算总价格
   handleAllPrice() {
     let price = 0;
-    this.data.goods.forEach(v=>{
-      price += v.goods_price*v.number;
+    this.data.goods.forEach(v => {
+      price += v.goods_price * v.number;
     })
+    //修改总价格
     this.setData({
-      allPrice:price
-    })  
-    },
-/**
- * 获取收货地址
- */
-  handleGetAddress () {
+      allPrice: price
+    })
+    // 修改本地数据
+    wx.setStorageSync("goods", this.data.goods)
+  },
+  /**
+   * 获取收货地址
+   */
+  handleGetAddress() {
     wx.chooseAddress({
-      success:res => {
+      success: res => {
         // console.log(res)
         this.setData({
-          address:{
-            name:res.userName,
-            tel:res.telNumber,
-            detail:res.cityName+res.countyName+res.detailInfo
+          address: {
+            name: res.userName,
+            tel: res.telNumber,
+            detail: res.cityName + res.countyName + res.detailInfo
           }
         });
         // 保存信息到本地
-        wx.setStorageSync("address",this.data.address)
+        wx.setStorageSync("address", this.data.address)
       }
-    }) 
+    })
   }
 })
