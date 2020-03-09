@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address:{}
+    address:{},
+    goods: []
   },
 
   /**
@@ -13,12 +14,15 @@ Page({
    */
   onLoad: function (options) {
     // 获取本地地址
-    if(!this.data.address.name) {
-      this.data.address = {};
-    }
     let address =  wx.getStorageSync("address")
     this.setData({
-      address 
+      address: address || {} 
+    })
+  },
+  onShow(){
+    //onLoad和data只会执行一次
+    this.setData({
+      goods:wx.getStorageSync("goods") || []
     })
   },
 

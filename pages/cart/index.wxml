@@ -28,24 +28,24 @@
   </view>
 
   <!-- 商品列表 -->
-  <view class="goods-list" wx:for="{{5}}" wx:key="index">
+  <view class="goods-list">
     商品中间项
-    <view class="goods-item">
+    <view class="goods-item"  wx:for="{{goods}}" wx:key="index">
       <icon type="success" color="red"></icon>
-      <image mode="aspectFill" src="https://img13.360buyimg.com/mobilecms/s144x144_jfs/t1/58161/29/16186/268929/5dd63725E02948ad8/9a2c25a6855bfb7e.jpg!q70.jpg.webp"></image>
+      <image mode="aspectFill" src="{{item.goods_small_logo}}"></image>
 
       <!-- 商品右侧信息 -->
       <view class="goods-item-right">
         <view class="goods-title">
-          信息商品信息商品
+          {{item.goods_name}}
         </view>
         <view class="goods-info">
           <view class="goods-price">
-            <text>￥</text>25210
+            <text>￥</text>{{item.goods_price}}
           </view>
           <view class="goods-number">
             <view class="calc-button">-</view>
-            <input value="1"></input>
+            <input value="{{item.number}}"></input>
             <view class="calc-button">+</view>
           </view>
         </view>
